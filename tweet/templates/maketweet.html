@@ -1,0 +1,11 @@
+<form action="" method="POST">
+    <div>
+   {% csrf_token %}
+        <h1>Create a Tweet Here:</h1>
+   {%for form in Form%}
+        <p>{{form}}</p>
+        {%endfor%}
+        <div>140 MAX</div>
+   <input type="submit"  value="Click to make tweet">
+    </div>
+</form>

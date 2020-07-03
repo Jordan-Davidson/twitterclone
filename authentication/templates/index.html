@@ -1,0 +1,8 @@
+<h1>Welcome to TWEETER</h1>
+{% if request.path == '/welcome/' %}
+    <a class="btn btn-primary" href="/login/">Click here to Login</a>
+    <div>Don't have an account?</div>
+    <a class="btn btn-primary" href="/signup/">Sign up</a>
+{% elif request.path == '/signup/' or request.path == '/login/' %}
+    {%include 'signup.html'%}
+{%endif%}

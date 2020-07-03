@@ -1,0 +1,49 @@
+<div style="text-align:center;">
+    <div><a href="/">Home</a></div>
+    <div><a href="/{{request.user}}/NEW">Tweet</a></div>
+    <div><a href="/notifications/{{request.user}}">Notifications
+        {%if count >= 1%}
+        <span>{{count}}</span>
+        {%endif%}
+    </a></div>
+    <div><a href="/{{request.user}}/">My Profile</a></div>
+</div>
+<hr>
+</div>
+<div>
+<div>
+    <div>
+        {%if request.path == '/' or request.user.username in request.path%}
+                        <div>
+                <div>
+        <h3>{{user.username}}</h3>
+                <h6><a href="">@{{user.username}}</a></h6>
+                <p>Tweets: {{tweets.count}}</p>
+                <p>Following: {{user.followers.all.count}}</p>
+                    </div>
+            </div>
+        {%else%}
+            <div>
+                <div>
+        <h3>{{pageuser.username}}</h3>
+                <h6><a href="">@{{pageuser.username}}</a></h6>
+                <p>Tweets: {{tweets.count}}</p>
+                <p>Following: {{pageuser.followers.all.count}}</p>
+                    {%if pageuser not in user.followers.all%}
+                    <a href="/follow/{{pageuser.username}}/{{user}}" role="button">Follow</a>
+                    {%else%}
+                    <a href="/unfollow/{{pageuser.username}}/{{user}}" role="button">Unfollow</a>
+                    {%endif%}
+
+                    </div>
+            </div>
+        {%endif%}
+        <a href="/logout/">Sign out</a>
+    </div>
+    <hl>
+        <div></div>
+        {% if 'NEW' in request.path %}
+        {%include 'maketweet.html' with form=Form %}
+        {%else%}
+        {%include 'tweets.html' with Data=Data %}
+        {%endif%}

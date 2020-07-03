@@ -1,0 +1,36 @@
+{%if request.path == "/"%}
+<h1>What's happening, {{user}}?</h1>
+{%for tweet in nyt%}
+<div class="card mb-2" style="width: 50rem;">
+    <div class="card-body">
+        <h5 class="card-title mb-1 text-muted" >
+            <a href="/{{tweet.username}}/">{{tweet.username}}</a>
+        </h5>
+        <h6 class="card-subtitle mb-1">
+            <a href="/{{tweet.username}}/" class="card-subtitle text-muted">
+            @{{tweet.username}}
+        </h6>
+        </a>
+        <li class="card-text">{{tweet.body}}</li>
+        <a href="/{{tweet.username}}/{{tweet.id}}">{{tweet.time}}</a>
+    </div>
+</div>
+{%endfor%}
+{%else%}
+{%for tweet in tweets%}
+<div class="card mb-2" style="width: 50rem;">
+    <div class="card-body">
+        <h5 class="card-title mb-1" >
+            <a href="/{{tweet.username}}/">{{tweet.username}}</a>
+        </h5>
+        <h6 class="card-subtitle mb-1 text-muted">
+            <a href="/{{tweet.username}}/" class="card-subtitle text-muted">
+            @{{tweet.username}}
+        </h6>
+        </a>
+        <li class="card-text">{{tweet.body}}</li>
+        <a href="/{{tweet.username}}/{{tweet.id}}">{{tweet.time}}</a>
+    </div>
+</div>
+{%endfor%}
+{%endif%}
